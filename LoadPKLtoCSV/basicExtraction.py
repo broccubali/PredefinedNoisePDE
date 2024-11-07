@@ -24,7 +24,6 @@ for i in range(u.shape[0]):
             np.random.normal(abs(u[i][j]), abs(u[i][j]) + 0.1), abs(u[i][j])
         )
 
-# Add noise to u
 u_noisy = u + noise
 
 # Apply Gaussian filter to smooth the noisy data
@@ -37,27 +36,27 @@ u_max = np.max(u_noisy_smoothed)
 u_noisy_normalized = (u_noisy_smoothed - u_min) / (u_max - u_min)
 
 # Create figure and axis
-fig, ax = plt.subplots()
-(line,) = ax.plot(x, u_noisy_smoothed[0])
+# fig, ax = plt.subplots()
+# (line,) = ax.plot(x, u_noisy_smoothed[0])
 
 
-def update(frame):
-    line.set_ydata(u_noisy_normalized[frame])
-    ax.set_title(f"Time step {frame}")
-    return (line,)
+# def update(frame):
+#     line.set_ydata(u_noisy_normalized[frame])
+#     ax.set_title(f"Time step {frame}")
+#     return (line,)
 
 
-# Create animation
-ani = animation.FuncAnimation(
-    fig, update, frames=u_noisy_normalized.shape[0], blit=True
-)
+# # Create animation
+# ani = animation.FuncAnimation(
+#     fig, update, frames=u_noisy_normalized.shape[0], blit=True
+# )
 
-# Save as GIF
-gif_path = "u_noisy_normalized_over_time.gif"
-ani.save(gif_path, writer="imagemagick", fps=10)
+# # Save as GIF
+# gif_path = "u_noisy_normalized_over_time.gif"
+# ani.save(gif_path, writer="imagemagick", fps=10)
 
-print(f"GIF saved as {gif_path}")
-loaded_dictionary["u_noisy"] = u_noisy_normalized
+# print(f"GIF saved as {gif_path}")
+# loaded_dictionary["u_noisy"] = u_noisy_normalized
 
 # Save the modified dictionary back to a pickle file (optional)
 path_save = "/home/shusrith/projects/blind-eyes/PredefinedNoisePDE/u,x,t/"
